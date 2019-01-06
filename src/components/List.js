@@ -27,9 +27,41 @@ class List extends Component {
         })
     }
 
+    handleChange = (event) => {
+      this.setState({formValue: event.target.value})
+    }
+
+    handleSubmit = (event) => {
+      alert('A name was submitted: ' + this.state.formValue)
+
+      axios({
+        method: 'post', //you can set what request you want to be
+        url: 'http://localhost:4741/items',
+        // data: {name: this.state.formValue},
+        data:{
+          item: {
+            name: this.state.formValue
+          }
+        },
+      
+        headers: {
+          Authorization: 'Token ' + 'token=BAhJIiUxYzc5NzMyNzJmODg1MTkzZjkyMTZmYzUwOTk2MzEwZAY6BkVG--96e181a0fe88c8e654c5b6a77be112a9c0ee83e5'
+        }
+      })
+
+      event.preventDefault()
+    }
+
     render() { 
 
-      const GroceryList = () => this.state.items.map(item => <li key={item.name}> {item.name}</li>)        
+
+
+      const GroceryList = () => this.state.items.map(item => 
+        
+        <div key={item.id}>
+          <Item name={item.name}/> 
+        </ div>
+      )        
 
       return ( 
           
@@ -40,16 +72,16 @@ class List extends Component {
 
           <form onSubmit={this.handleSubmit}>
             <label>
-              <input type="text" value={this.state.formValue} />
+              <input type="text" value={this.state.formValue} onChange={this.handleChange} />
             </label>
             <input type="submit" value="Submit" />
           </form>
 
-          <ul>
-            <ul>
-              <GroceryList />
-            </ul>
-          </ul>
+
+
+          <div className="container-fluid">
+            <GroceryList />
+          </ div>
         </div>
       )
     }

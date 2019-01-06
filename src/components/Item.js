@@ -5,8 +5,8 @@ class Item extends Component {
     render() { 
       return ( 
         <div>
-          <button type="button" className="btn btn-info">{this.props.food}</button>
-
+          <button type="button" className="btn btn-info col-4">{this.props.name}</button>
+          
           <button type="button" className="btn btn-danger">X</button>
 
         </div>
