@@ -13,7 +13,6 @@ const Dashboard = () => (
 const App = () => (
   <div>
     <List /> 
-
   </div>
 )
 

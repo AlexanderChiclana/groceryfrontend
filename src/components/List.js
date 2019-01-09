@@ -17,8 +17,17 @@ class List extends Component {
     
     }
 
+    componentDidMount() {
+      axios.get('http://localhost:4741/items')
+        .then(res => {
+        //   const items = res.data
+          this.setState({ items: res.data.items})
+        })
+    }
+
+
     getList = () => {
-      console.log('working')
+      console.log('working to get list')
       axios.get('http://localhost:4741/items')
         .then(res => {
         //   const items = res.data
@@ -32,7 +41,6 @@ class List extends Component {
     }
 
     handleSubmit = (event) => {
-      alert('A name was submitted: ' + this.state.formValue)
 
       axios({
         method: 'post', //you can set what request you want to be
@@ -42,42 +50,45 @@ class List extends Component {
           item: {
             name: this.state.formValue
           }
-        },
-      
-        headers: {
-          Authorization: 'Token ' + 'token=BAhJIiUxYzc5NzMyNzJmODg1MTkzZjkyMTZmYzUwOTk2MzEwZAY6BkVG--96e181a0fe88c8e654c5b6a77be112a9c0ee83e5'
         }
-      })
+      
+        // headers: {
+        //   Authorization: 'Token ' + 'token=BAhJIiUxYzc5NzMyNzJmODg1MTkzZjkyMTZmYzUwOTk2MzEwZAY6BkVG--96e181a0fe88c8e654c5b6a77be112a9c0ee83e5'
+        // }
+      }).then(
+        this.getList
+      )
 
       event.preventDefault()
     }
 
     render() { 
 
-
-
+     
       const GroceryList = () => this.state.items.map(item => 
         
         <div key={item.id}>
-          <Item name={item.name}/> 
-        </ div>
+          <Item name={item.name} id={item.id} getList={this.getList}/> 
+        </div>
       )        
 
       return ( 
           
         <div>
-          <h1>Grocery List </h1>
-          <button type="button" className="btn btn-primary" onClick={()=> this.getList()}>Get List</button>
+          <div style={{ display: 'flex' , justifyContent: 'center'}}>
 
+            <h1 style={{color:'white'}}>Grocery List </h1>
+          </div> 
 
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              <input type="text" value={this.state.formValue} onChange={this.handleChange} />
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
+          <div style={{ display: 'flex' , justifyContent: 'center'}}>
 
-
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                <input type="text" className="form-control"value={this.state.formValue} onChange={this.handleChange} />
+              </label>
+              <input type="submit" className='btn btn-primary' value="Add" />
+            </form>
+          </div>
 
           <div className="container-fluid">
             <GroceryList />
