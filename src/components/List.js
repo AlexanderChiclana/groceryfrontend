@@ -3,7 +3,7 @@ import Item from './Item'
 
 import axios from 'axios'
 
-
+import { Route } from 'react-router-dom'
 
 class List extends Component {
 
@@ -73,27 +73,29 @@ class List extends Component {
       )        
 
       return ( 
-          
-        <div>
-          <div style={{ display: 'flex' , justifyContent: 'center'}}>
-
-            <h1 style={{color:'white'}}>Grocery List </h1>
-          </div> 
-
-          <div style={{ display: 'flex' , justifyContent: 'center'}}>
-
-            <form onSubmit={this.handleSubmit}>
-              <label>
-                <input type="text" className="form-control"value={this.state.formValue} onChange={this.handleChange} />
-              </label>
-              <input type="submit" className='btn btn-primary' value="Add" />
-            </form>
+        
+        <Route path='/stop' render={() => ( 
+          <div>
+            <div style={{ display: 'flex' , justifyContent: 'center'}}>
+              <h1 style={{color:'white'}}>Grocery List </h1>
+            </div> 
+            <div style={{ display: 'flex' , justifyContent: 'center'}}>
+              <form onSubmit={this.handleSubmit}>
+                <label>
+                  <input type="text" className="form-control"value={this.state.formValue} onChange={this.handleChange} />
+                </label>
+                <input type="submit" className='btn btn-primary' value="Add" />
+              </form>
+            </div>
+  
+            <div className="container-fluid">
+              <GroceryList />
+            </ div>
+  
+  
           </div>
-
-          <div className="container-fluid">
-            <GroceryList />
-          </ div>
-        </div>
+        )
+        } />
       )
     }
 }
