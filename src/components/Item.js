@@ -6,7 +6,7 @@ class Item extends Component {
     handleDelete = (event) => {
       axios({
         method: 'delete', //you can set what request you want to be
-        url: 'http://localhost:4741/items/' + this.props.id
+        url: `http://localhost:4741/${this.props.resourceName}/${this.props.id}`
         // headers: {
         //   Authorization: 'Token ' + 'token=BAhJIiUxYzc5NzMyNzJmODg1MTkzZjkyMTZmYzUwOTk2MzEwZAY6BkVG--96e181a0fe88c8e654c5b6a77be112a9c0ee83e5'
         // }

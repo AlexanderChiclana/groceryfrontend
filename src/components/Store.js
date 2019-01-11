@@ -61,7 +61,7 @@ class Store extends Component {
         const GroceryList = () => this.state.items.map(item => 
         
           <div key={item.id}>
-            <Item name={item.name} id={item.id} getList={this.getList}/> 
+            <Item name={item.name} id={item.id} getList={this.getList} resourceName={this.props.resourceName}/> 
           </div>
         )        
         return (        <div>
