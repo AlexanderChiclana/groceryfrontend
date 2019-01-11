@@ -24,7 +24,6 @@ class Store extends Component {
         this.setState({formValue: event.target.value})
       }
       
-      string = ''
 
       handleSubmit = (event) => {
         
@@ -53,6 +52,18 @@ class Store extends Component {
           }).then(this.getList)
           event.preventDefault()
           break 
+        case 'vm_items':
+          axios({
+            method: 'post', 
+            url: 'http://localhost:4741/vm_items',
+            data:{
+              vm_item: {
+                name: this.state.formValue
+              }
+            }
+          }).then(this.getList)
+          event.preventDefault()
+          break 
         }
       }
   
@@ -66,7 +77,7 @@ class Store extends Component {
         )        
         return (        <div>
 
-          <header>
+          <header >
             <div style={{ display: 'flex' , justifyContent: 'center'}}>
               <h1 className='display-4' style={{color:'white'}}>{this.props.storeName} </h1>
             </div> 
