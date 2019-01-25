@@ -21,9 +21,9 @@ class Item extends Component {
     render() { 
       return ( 
         <div>
-          <button type="button" className="btn btn-info col-10">{this.props.name}</button>
+          <button type="button" className="btn btn-info col-10 col-md-3">{this.props.name}</button>
           
-          <button type="button" className="btn btn-danger col-2" style={{zIndex: 1 }}onClick={this.handleDelete}>X</button>
+          <button type="button" className="btn btn-danger col-2 col-md-1" style={{zIndex: 1 }}onClick={this.handleDelete}>X</button>
 
 
 

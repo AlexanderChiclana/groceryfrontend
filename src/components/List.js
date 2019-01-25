@@ -6,6 +6,7 @@ import axios from 'axios'
 import { Route } from 'react-router-dom'
 import Store from './Store'
 import SwipeableRoutes from 'react-swipeable-routes'
+import SwipeableViews from 'react-swipeable-views'
 
 class List extends Component {
 
@@ -20,20 +21,24 @@ class List extends Component {
 
     return ( 
       <div>
-        {/* <SwipeableRoutes containerStyle={{height: '100%'}}> */}
+        <SwipeableRoutes>
+    
           <Route path='/stop' render={()=>(
             <Store storeName={'Stop and Shop'} resourceName={'items'}/>
           )}/>
-    
+
+
           <Route path='/tj' render={()=>(
             <Store storeName={'Trader Joes'}  resourceName={'tj_items'}/>
           )}/>
-
+ 
+    
           <Route path='/vm' render={()=>(
             <Store storeName={'V-Mart'}  resourceName={'vm_items'}/>
           )}/>
+    
+        </SwipeableRoutes>
 
-        {/* </SwipeableRoutes> */}
       </div>
     )
   }

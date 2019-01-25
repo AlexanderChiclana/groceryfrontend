@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Item from './Item'
 import axios from 'axios'
 
+
+
 class Store extends Component {
     state = {   
       formValue: '', 
@@ -76,20 +78,20 @@ class Store extends Component {
           </div>
         )        
         return (        <div>
+            <header >
+              <div style={{ display: 'flex' , justifyContent: 'center'}}>
+                <h1 className='display-4' style={{color:'white'}}>{this.props.storeName} </h1>
+              </div> 
+              <div style={{ display: 'flex' , justifyContent: 'center'}}>
+                <form onSubmit={this.handleSubmit}>
+                  <label>
+                    <input type="text" className="form-control" value={this.state.formValue} onChange={this.handleChange} />
+                  </label>
+                  <input type="submit" className='btn btn-primary' value="Add" />
+                </form>
+              </div>   
+            </header>
 
-          <header >
-            <div style={{ display: 'flex' , justifyContent: 'center'}}>
-              <h1 className='display-4' style={{color:'white'}}>{this.props.storeName} </h1>
-            </div> 
-            <div style={{ display: 'flex' , justifyContent: 'center'}}>
-              <form onSubmit={this.handleSubmit}>
-                <label>
-                  <input type="text" className="form-control" value={this.state.formValue} onChange={this.handleChange} />
-                </label>
-                <input type="submit" className='btn btn-primary' value="Add" />
-              </form>
-            </div>   
-          </header>
           <br />
           <br />
           <br /> 
